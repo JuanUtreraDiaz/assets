@@ -31,6 +31,14 @@ Assets are grouped by the UI problem they solve:
 
 The snippets are reference implementations, not a published package. Review each one before using it in production, especially its dependencies, responsive behavior, and keyboard interaction.
 
+### LLM-assisted integration
+
+This repository includes the [`integrate-ui-assets` skill](.github/skills/integrate-ui-assets/SKILL.md) for coding agents that support Agent Skills. It guides an agent through inspecting the target project, extracting every part of a snippet, adapting it to the existing architecture and design system, and validating the result instead of copying the example blindly.
+
+Ask the agent to integrate a named asset into a specific project or screen, for example:
+
+> Use the `integrate-ui-assets` skill to add `backgrounds/meteor_effect.txt` to the dashboard header.
+
 ## Contributing
 
 Contributions are welcome. Please keep additions focused, reusable, and easy to evaluate.
