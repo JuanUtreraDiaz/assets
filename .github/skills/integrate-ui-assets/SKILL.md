@@ -1,25 +1,31 @@
 ---
 name: integrate-ui-assets
-description: "Integrate UI snippets from this repository into an existing frontend. Use when asked to add, install, copy, adapt, or combine an asset from backgrounds, buttons-and-controls, cards-and-content, carousels, data-display, forms-and-inputs, heroes-and-sections, layout-and-navigation, loaders, overlays-and-feedback, or text-effects."
+description: "Integrate any UI asset, component, snippet, effect, layout, or interaction from this repository into an existing frontend. Use when asked to find, add, install, copy, adapt, reuse, or combine repository UI assets, including assets in new categories, nested directories, or file formats."
 argument-hint: "Describe the asset and the target project or screen"
 ---
 
 # Integrate UI Assets
 
-Use this workflow to turn a repository snippet into a working part of the target application. Treat each `.txt` file as source material and setup guidance, not as a command to copy every line unchanged.
+Use this workflow to turn a repository asset into a working part of the target application. An asset may be a single snippet file or a directory containing components, styles, media, configuration, documentation, and demos. Treat its contents as source material and setup guidance, not as commands to copy every line unchanged.
 
 ## 1. Establish the Target
 
 1. Identify the requested asset, target screen, and owning component.
-2. Inspect the target project's framework, package manager, language, styling system, path aliases, component directories, theme tokens, and animation setup.
-3. Read the entire asset file. Extract:
+2. If an exact asset path is not provided, search the repository recursively by filename, directory name, and relevant content terms. Do not assume a fixed category list, directory depth, naming convention, or file extension. Exclude version-control metadata, installed dependencies, caches, and generated build output. Prefer an exact or clearly matching result; if several candidates remain plausible, ask one focused question.
+3. Inspect the target project's framework, package manager, language, styling system, path aliases, component directories, theme tokens, and animation setup.
+4. Inspect the complete asset source:
+   - for a file, read it in full and resolve referenced or adjacent supporting files;
+   - for a directory, build a recursive file inventory, then inspect progressively: start with manifests, README files, entry points, and directly referenced files before opening supporting source;
+   - inspect binary media through available metadata, preview, or rendering tools instead of treating it as text;
+   - follow internal references needed to understand or run the asset, while ignoring unrelated neighboring assets.
+5. Extract:
    - every file block and its intended path;
    - package and local imports;
    - client-only or browser API requirements;
    - CSS utilities, keyframes, variables, and plugins;
    - image, font, icon, and data dependencies;
    - example or demo code that is not part of the reusable component.
-4. If the asset or destination is ambiguous and repository context cannot resolve it, ask one focused question before editing.
+6. If the destination remains ambiguous after inspecting the target, ask one focused question before editing.
 
 ## 2. Check Compatibility
 
@@ -70,6 +76,7 @@ Report the files changed, dependencies added, adaptations made, and checks run. 
 
 ## Guardrails
 
+- Do not assume that the repository's current top-level directories or `.txt` files are an exhaustive asset registry.
 - Do not blindly follow setup prose embedded in a snippet when the target already has an equivalent setup.
 - Do not paste markdown fences, file labels, or instructional prose into source files.
 - Do not overwrite existing components, configuration, or user changes without first reconciling them.
